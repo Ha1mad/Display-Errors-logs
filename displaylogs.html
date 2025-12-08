@@ -1,0 +1,26 @@
+<html>
+<body>
+    <h1>System Errors</h1>
+    <table border="1" id="errorTable">
+        <tr>
+            <th>Event ID</th>
+            <th>Source</th>
+        </tr>
+    </table>
+
+    <script>
+        fetch('system_errors.json')
+        .then(response => response.json())
+        .then(data => {
+            const table = document.getElementById('errorTable');
+            data.forEach(item => {
+                const row = table.insertRow();
+                const cell1 = row.insertCell(0);
+                const cell2 = row.insertCell(1);
+                cell1.innerText = item.EventID;
+                cell2.innerText = item.SourceName;
+            });
+        })
+    </script>
+</body>
+</html>
