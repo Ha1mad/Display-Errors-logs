@@ -64,7 +64,3 @@ Conclusion
 
 This project is a simple, useful script for quickly checking Windows errors. Right now, it does exactly what it’s supposed to do: show recent error events in a table. With some small improvements.
 
-
-Conclusion
-
-This project is a simple, useful script for quickly checking Windows errors. Right now, it does exactly what it’s supposed to do: show recent error events in a table. With some small improvement
