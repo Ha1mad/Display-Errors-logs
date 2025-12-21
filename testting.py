@@ -3,7 +3,7 @@ import json
 import os
 
 server = 'localhost'
-log_type ='system'
+log_type = 'system'
 limit = 50
 count = 0
 
@@ -11,7 +11,7 @@ handle = win32evtlog.OpenEventLog(server, log_type)
 
 flags = win32evtlog.EVENTLOG_BACKWARDS_READ | win32evtlog.EVENTLOG_SEQUENTIAL_READ
 
-print("System Errors:\n")
+print("Looking for system errors...\n")
 data = []
 
 while True:
@@ -21,22 +21,46 @@ while True:
 
     for event in events:
         if event.EventType == 1:
-            print(f"Error Event ID: {event.EventID}")
-            print(f"Source: {event.SourceName}")
-            print("-" * 70)
-
+            
+            time_str = "N/A"
+            if event.TimeGenerated:
+                try:
+                    time_str = event.TimeGenerated.strftime('%Y-%m-%d %H:%M:%S')
+                except:
+                    time_str = str(event.TimeGenerated)
+            
+            
+            desc = "No description"
+            if event.StringInserts:
+                try:
+                    
+                    parts = []
+                    for item in event.StringInserts:
+                        if item:
+                            parts.append(str(item))
+                    if parts:
+                        desc = ' '.join(parts)
+                except:
+                    pass
+            
+            print(f"ID: {event.EventID} | Source: {event.SourceName} | Time: {time_str}")
+            
             data.append({
                 'EventID': event.EventID,
-                'SourceName': event.SourceName
+                'SourceName': event.SourceName,
+                'TimeGenerated': time_str,
+                'Description': desc
             })
 
             count += 1
             if count >= limit:
                 break
 
-# Save JSON ONCE after collecting logs
+
+win32evtlog.CloseEventLog(handle)
+
 with open('system_errors.json', 'w') as f:
     json.dump(data, f, indent=4)
 
-# Show exactly where the file is
-print("JSON saved to:", os.path.join(os.getcwd(), "system_errors.json"))
+print(f"\nFound {count} errors")
+print(f"Saved to: {os.path.join(os.getcwd(), 'system_errors.json')}")
