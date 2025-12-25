@@ -56,18 +56,15 @@
             color: #00d4ff;
         }
 
-        
         .live-row {
             background: rgba(0, 212, 255, 0.05);
         }
 
-        
         .time-cell {
             color: #aaa;
             font-size: 0.9em;
         }
 
-        
         .source-clickable {
             color: #00d4ff;
             cursor: pointer;
@@ -78,7 +75,6 @@
             color: #ff8c00;
         }
 
-        
         .modal-overlay {
             display: none;
             position: fixed;
@@ -142,7 +138,6 @@
             line-height: 1.5;
         }
 
-        
         .dashboard-header {
             display: flex;
             justify-content: space-between;
@@ -160,7 +155,6 @@
             border: 1px solid rgba(0, 212, 255, 0.3);
         }
 
-        
         .separator-row {
             background: rgba(90, 203, 225, 0.1) !important;
             font-weight: bold;
@@ -191,7 +185,6 @@
         </table>
     </div>
 
-    
     <div id="descriptionModal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -204,156 +197,153 @@
         </div>
     </div>
 
-    <script>
-        let allData = []; 
-        let staticData = []; 
-        let isInitialLoad = true;
-        let updateInterval;
-        
-        
-        const modal = document.getElementById('descriptionModal');
-        const modalDescription = document.getElementById('modalDescription');
-        
-        function showDescription(description) {
-            modalDescription.textContent = description || 'No description available';
-            modal.style.display = 'block';
-        }
-        
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-        
-        
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-        
-        function updateTable() {
+<script>
+let lastUpdateTime = 0;
+let updateInterval;
+let timestamp = 0;
+
+const modal = document.getElementById('descriptionModal');
+const modalDescription = document.getElementById('modalDescription');
+
+function showDescription(description) {
+    modalDescription.textContent = description || 'No description available';
+    modal.style.display = 'block';
+}
+
+function closeModal() {
+    modal.style.display = 'none';
+}
+
+modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+        closeModal();
+    }
+});
+
+function updateTable() {
+    timestamp = new Date().getTime();
+    
+    fetch('system_errors.json?' + new Date().getTime())
+        .then(response => response.json())
+        .then(data => {
             const table = document.getElementById('errorTable');
-            
             
             while (table.rows.length > 1) {
                 table.deleteRow(1);
             }
             
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString();
+            document.querySelector('.live-indicator span').textContent = 
+                `Live - Updated: ${timeStr}`;
             
-            const liveRows = allData.slice(0, Math.min(10, allData.length));
-            
-            liveRows.forEach((item, index) => {
-                const row = table.insertRow();
-                row.className = 'live-row';
-                
-                
-                const cell1 = row.insertCell(0);
-                cell1.innerText = item.EventID;
-                
-                
-                const cell2 = row.insertCell(1);
-                const sourceSpan = document.createElement('span');
-                sourceSpan.className = 'source-clickable';
-                sourceSpan.innerText = item.SourceName;
-                sourceSpan.onclick = function() {
-                    showDescription(item.Description);
-                };
-                cell2.appendChild(sourceSpan);
-                
-                
-                const cell3 = row.insertCell(2);
-                cell3.className = 'time-cell';
-                cell3.innerText = item.TimeGenerated || 'N/A';
-            });
-            
-            
-            if (staticData.length > 0 && allData.length >= 10) {
-                const separatorRow = table.insertRow();
-                separatorRow.className = 'separator-row';
-                const sepCell = separatorRow.insertCell(0);
-                sepCell.colSpan = 3;
-                sepCell.innerText = 'Static ';
-            }
-            
-            
-            staticData.forEach(item => {
-                const row = table.insertRow();
-                
-            
-                const cell1 = row.insertCell(0);
-                cell1.innerText = item.EventID;
-                
-                
-                const cell2 = row.insertCell(1);
-                const sourceSpan = document.createElement('span');
-                sourceSpan.className = 'source-clickable';
-                sourceSpan.innerText = item.SourceName;
-                sourceSpan.onclick = function() {
-                    showDescription(item.Description);
-                };
-                cell2.appendChild(sourceSpan);
-                
-                // Time
-                const cell3 = row.insertCell(2);
-                cell3.className = 'time-cell';
-                cell3.innerText = item.TimeGenerated || 'N/A';
-            });
-        }
-        
-        function loadData() {
-            fetch('system_errors.json?' + new Date().getTime())
-            .then(response => response.json())
-            .then(data => {
-                allData = data;
-                
-                if (isInitialLoad) {
-                
-                    staticData = [...data];
-                    isInitialLoad = false;
-                    
-                    
-                    startLiveUpdates();
-                }
-                
-                updateTable();
-            })
-            .catch(error => {
-                console.error('Error loading data:', error);
-                const table = document.getElementById('errorTable');
+            if (data.length === 0) {
                 const row = table.insertRow();
                 const cell = row.insertCell(0);
                 cell.colSpan = 3;
-                cell.innerText = 'Error loading data. Please make sure system_errors.json exists.';
-                cell.style.textAlign = 'center';
-                cell.style.color = '#ff3232';
-                cell.style.padding = '30px';
-            });
-        }
-        
-        function startLiveUpdates() {
-            
-            if (updateInterval) {
-                clearInterval(updateInterval);
+                cell.innerHTML = '<div style="text-align:center;padding:40px;color:#aaa">📭 No events found<br><small>Waiting for events...</small></div>';
+            } else {
+                data.forEach((item, index) => {
+                    const row = table.insertRow();
+                    row.className = 'live-row';
+                    
+                    if (lastUpdateTime > 0) {
+                        row.style.opacity = '0.8';
+                        setTimeout(() => {
+                            row.style.transition = 'opacity 0.5s ease';
+                            row.style.opacity = '1';
+                        }, 10);
+                    }
+                    
+                    const cell1 = row.insertCell(0);
+                    cell1.innerText = item.EventID || 'N/A';
+                    
+                    const cell2 = row.insertCell(1);
+                    const sourceSpan = document.createElement('span');
+                    sourceSpan.className = 'source-clickable';
+                    
+                    let sourceText = item.SourceName || 'Unknown';
+                    if (item.Log) {
+                        sourceText += ` (${item.Log})`;
+                    }
+                    sourceSpan.innerText = sourceText;
+                    
+                    sourceSpan.onclick = function() {
+                        let details = `Event ID: ${item.EventID || 'N/A'}\n`;
+                        details += `Source: ${item.SourceName || 'Unknown'}\n`;
+                        details += `Log: ${item.Log || 'N/A'}\n`;
+                        details += `Type: ${item.EventType || 'N/A'}\n`;
+                        details += `Time: ${item.TimeGenerated || 'N/A'}\n\n`;
+                        details += `Description:\n${item.Description || 'No description available'}`;
+                        showDescription(details);
+                    };
+                    cell2.appendChild(sourceSpan);
+                    
+                    const cell3 = row.insertCell(2);
+                    cell3.className = 'time-cell';
+                    cell3.innerText = item.TimeGenerated || 'N/A';
+                });
+                
+                document.querySelector('h1').innerHTML = 
+                    `System Monitor <span style="color:#aaa; font-size:0.7em; margin-left:10px;">${data.length} events</span>`;
             }
             
+            lastUpdateTime = timestamp;
+        })
+        .catch(error => {
+            console.error('Error loading data:', error);
+            const table = document.getElementById('errorTable');
+            const row = table.insertRow();
+            const cell = row.insertCell(0);
+            cell.colSpan = 3;
+            cell.innerHTML = '<div style="text-align:center;padding:30px;color:#ff3232">❌ Error loading data<br><small>' + error.message + '</small></div>';
             
-            updateInterval = setInterval(() => {
-                fetch('system_errors.json?' + new Date().getTime())
-                .then(response => response.json())
-                .then(data => {
-                    
-                    allData = data.slice(0, 10);
-                    updateTable();
-                })
-                .catch(error => {
-                    console.error('Error in live update:', error);
-                });
-            }, 10000); 
+            document.querySelector('.live-indicator span').textContent = 
+                'Connection Error';
+        });
+}
+
+function startLiveUpdates() {
+    if (updateInterval) {
+        clearInterval(updateInterval);
+    }
+    
+    updateTable();
+    
+    updateInterval = setInterval(updateTable, 5000);
+}
+
+document.addEventListener('DOMContentLoaded', startLiveUpdates);
+
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        if (updateInterval) {
+            clearInterval(updateInterval);
+            updateInterval = null;
+            document.querySelector('.live-indicator span').textContent = 
+                'Paused (tab hidden)';
         }
-        
-        
-        document.addEventListener('DOMContentLoaded', loadData);
-        
-        
-    </script>
+    } else {
+        startLiveUpdates();
+    }
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'F5' || (event.ctrlKey && event.key === 'r')) {
+        event.preventDefault();
+        updateTable();
+    }
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
+
+setInterval(() => {
+    if (!updateInterval && !document.hidden) {
+        console.log('Reconnecting...');
+        startLiveUpdates();
+    }
+}, 10000);
+</script>
 </body>
 </html>
