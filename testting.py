@@ -1,66 +1,107 @@
 import win32evtlog
 import json
-import os
+import time
+from datetime import datetime
 
-server = 'localhost'
-log_type = 'system'
-limit = 50
-count = 0
+logs_to_check = ['System', 'Application']
+json_file = 'system_errors.json'
 
-handle = win32evtlog.OpenEventLog(server, log_type)
-
-flags = win32evtlog.EVENTLOG_BACKWARDS_READ | win32evtlog.EVENTLOG_SEQUENTIAL_READ
-
-print("Looking for system errors...\n")
-data = []
-
-while True:
-    events = win32evtlog.ReadEventLog(handle, flags, 0)
-    if not events or count >= limit:
-        break
-
-    for event in events:
-        if event.EventType == 1:
-            
-            time_str = "N/A"
-            if event.TimeGenerated:
-                try:
-                    time_str = event.TimeGenerated.strftime('%Y-%m-%d %H:%M:%S')
-                except:
-                    time_str = str(event.TimeGenerated)
+def get_events():
+   
+    
+    all_events = []
+    
+    for log_type in logs_to_check:
+        try:
+            print(f"  Reading {log_type}...")
+            handle = win32evtlog.OpenEventLog('localhost', log_type)
             
             
-            desc = "No description"
-            if event.StringInserts:
-                try:
+            flags = win32evtlog.EVENTLOG_SEQUENTIAL_READ | win32evtlog.EVENTLOG_BACKWARDS_READ
+            
+            
+            events = win32evtlog.ReadEventLog(handle, flags, 4096)
+            
+            if events:
+                print(f"    Got {len(events)} events")
+                
+                
+                for event in events[:10]:
                     
-                    parts = []
-                    for item in event.StringInserts:
-                        if item:
-                            parts.append(str(item))
-                    if parts:
-                        desc = ' '.join(parts)
-                except:
-                    pass
+                    time_str = "No time"
+                    if event.TimeGenerated:
+                        try:
+                            
+                            hour = event.TimeGenerated.hour + 3
+                            if hour >= 24:
+                                hour -= 24
+                            time_str = f"{event.TimeGenerated.year}-{event.TimeGenerated.month:02d}-{event.TimeGenerated.day:02d} {hour:02d}:{event.TimeGenerated.minute:02d}:{event.TimeGenerated.second:02d} KSA"
+                        except:
+                            time_str = str(event.TimeGenerated)
+                    
+                    
+                    if event.EventType == 1:
+                        etype = "ERROR"
+                    elif event.EventType == 2:
+                        etype = "WARNING"
+                    else:
+                        etype = "INFO"
+                    
+                    all_events.append({
+                        'EventID': event.EventID,
+                        'SourceName': event.SourceName,
+                        'TimeGenerated': time_str,
+                        'EventType': etype,
+                        'Log': log_type, 
+                        'Description': str(event.StringInserts)[:150] if event.StringInserts else   'no details'
+                    })
             
-            print(f"ID: {event.EventID} | Source: {event.SourceName} | Time: {time_str}")
+            win32evtlog.CloseEventLog(handle)
             
-            data.append({
-                'EventID': event.EventID,
-                'SourceName': event.SourceName,
-                'TimeGenerated': time_str,
-                'Description': desc
-            })
+        except Exception as e:
+            print(f"    Error: {e}")
+    
+    return all_events
 
-            count += 1
-            if count >= limit:
-                break
+def main():
+    print("Windows Event Monitor")
+    print("=" * 50)
+    
+    try:
+        check_count = 0
+        while True:
+            check_count += 1
+            now = datetime.now().strftime('%H:%M:%S')
+            
+            print(f"\n[{now}] Check #{check_count}")
+            
+            events = get_events()
+            
+            if events:
+            
+                events = events[:10]
+                
+                
+                with open(json_file, 'w') as f:
+                    json.dump(events, f, indent=2)
+                
+                print(f"Saved {len(events)} events to {json_file}")
+                
+                
+                for i, evt in enumerate(events[:3]):
+                    print(f"  {i+1}. {evt['SourceName']} - {evt['EventType']}")
+                
+            else:
+                print("No events found")
+                
+                with open(json_file, 'w') as f:
+                    json.dump([], f, indent=2)
+            
+            print(f"\nWaiting 10 seconds...")
+            time.sleep(10)
+            
+    except KeyboardInterrupt:
+        print("\n\nStopped!")
 
-
-win32evtlog.CloseEventLog(handle)
-
-with open('system_errors.json', 'w') as f:
-    json.dump(data, f, indent=4)
-
-print(f"\nFound {count} errors")
-print(f"Saved to: {os.path.join(os.getcwd(), 'system_errors.json')}")
+if __name__ == "__main__":
+    main()
