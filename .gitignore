@@ -1,0 +1,5 @@
+system_errors.json
+note
+__pycache__/
+*.pyc
+*.png
