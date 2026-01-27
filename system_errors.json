@@ -1,8 +1,40 @@
 [
   {
+    "EventID": 16,
+    "SourceName": "Microsoft-Windows-Kernel-General",
+    "TimeGenerated": "2026-01-27 13:29:47 KSA",
+    "EventType": "INFO",
+    "Log": "System",
+    "Description": "('103', '\\\\??\\\\C:\\\\Users\\\\Hamad2\\\\AppData\\\\Local\\\\Packages\\\\Microsoft.WindowsNotepad_8wekyb3d8bbwe\\\\Settings\\\\settings.dat', '2', '1')"
+  },
+  {
+    "EventID": 16,
+    "SourceName": "Microsoft-Windows-Kernel-General",
+    "TimeGenerated": "2026-01-27 13:29:47 KSA",
+    "EventType": "INFO",
+    "Log": "System",
+    "Description": "('167', '\\\\??\\\\C:\\\\ProgramData\\\\Packages\\\\Microsoft.WindowsNotepad_8wekyb3d8bbwe\\\\S-1-5-21-1734959453-2109564950-1623956290-1002\\\\SystemAppData\\\\Heliu"
+  },
+  {
+    "EventID": 16,
+    "SourceName": "Microsoft-Windows-Kernel-General",
+    "TimeGenerated": "2026-01-27 13:29:47 KSA",
+    "EventType": "INFO",
+    "Log": "System",
+    "Description": "('118', '\\\\??\\\\C:\\\\Users\\\\Hamad2\\\\AppData\\\\Local\\\\Packages\\\\Microsoft.WindowsNotepad_8wekyb3d8bbwe\\\\SystemAppData\\\\Helium\\\\UserClasses.dat', '13', '1'"
+  },
+  {
+    "EventID": 16,
+    "SourceName": "Microsoft-Windows-Kernel-General",
+    "TimeGenerated": "2026-01-27 13:29:47 KSA",
+    "EventType": "INFO",
+    "Log": "System",
+    "Description": "('111', '\\\\??\\\\C:\\\\Users\\\\Hamad2\\\\AppData\\\\Local\\\\Packages\\\\Microsoft.WindowsNotepad_8wekyb3d8bbwe\\\\SystemAppData\\\\Helium\\\\User.dat', '18', '2')"
+  },
+  {
     "EventID": -1610350565,
     "SourceName": "e1dexpress",
-    "TimeGenerated": "2026-01-22 15:35:18 KSA",
+    "TimeGenerated": "2026-01-27 13:28:01 KSA",
     "EventType": "WARNING",
     "Log": "System",
     "Description": "('', 'Intel(R) Ethernet Connection (16) I219-V')"
@@ -10,73 +42,41 @@
   {
     "EventID": 566,
     "SourceName": "Microsoft-Windows-Kernel-Power",
-    "TimeGenerated": "2026-01-22 15:35:18 KSA",
+    "TimeGenerated": "2026-01-27 13:28:01 KSA",
     "EventType": "INFO",
     "Log": "System",
-    "Description": "('21', '31', '114', '2', '586795815', '12020', '36340', '11740', '36340', '115', '0', 'false', '31')"
+    "Description": "('21', '32', '124', '2', '100943368', '30150', '36500', '30520', '36500', '125', '0', 'true', '32')"
   },
   {
     "EventID": 507,
     "SourceName": "Microsoft-Windows-Kernel-Power",
-    "TimeGenerated": "2026-01-22 15:35:18 KSA",
+    "TimeGenerated": "2026-01-27 13:28:01 KSA",
     "EventType": "INFO",
     "Log": "System",
-    "Description": "('2034', '29512834', '5228124654', '28806304', '572094726', '601607560', '2', '80', 'false', '31', '0', '903985', 'false', '0', '693765', 'true', 'tru"
-  },
-  {
-    "EventID": 172,
-    "SourceName": "Microsoft-Windows-Kernel-Power",
-    "TimeGenerated": "2026-01-22 15:35:17 KSA",
-    "EventType": "INFO",
-    "Log": "System",
-    "Description": "('0', '0')"
-  },
-  {
-    "EventID": 172,
-    "SourceName": "Microsoft-Windows-Kernel-Power",
-    "TimeGenerated": "2026-01-22 15:25:39 KSA",
-    "EventType": "INFO",
-    "Log": "System",
-    "Description": "('2', '7')"
+    "Description": "('0', '93262046', '859050833', '92955384', '88976383', '182238429', '13', '81', 'false', '32', '0', '889517', 'true', '0', '293607', 'false', 'true', "
   },
   {
     "EventID": 566,
     "SourceName": "Microsoft-Windows-Kernel-Power",
-    "TimeGenerated": "2026-01-22 15:25:31 KSA",
+    "TimeGenerated": "2026-01-27 13:26:20 KSA",
     "EventType": "INFO",
     "Log": "System",
-    "Description": "('21', '12', '113', '1', '14810802', '12080', '36340', '12020', '36340', '114', '2', 'false', '12')"
+    "Description": "('21', '12', '123', '1', '81314949', '29800', '36500', '30150', '36500', '124', '2', 'true', '12')"
   },
   {
     "EventID": 506,
     "SourceName": "Microsoft-Windows-Kernel-Power",
-    "TimeGenerated": "2026-01-22 15:25:16 KSA",
+    "TimeGenerated": "2026-01-27 13:24:58 KSA",
     "EventType": "INFO",
     "Log": "System",
-    "Description": "('12', 'true', 'false', '113', '12080', '36340', '113', '21')"
+    "Description": "('12', 'true', 'false', '123', '29800', '36500', '123', '21')"
   },
   {
     "EventID": 566,
     "SourceName": "Microsoft-Windows-Kernel-Power",
-    "TimeGenerated": "2026-01-22 15:25:16 KSA",
+    "TimeGenerated": "2026-01-27 13:24:58 KSA",
     "EventType": "INFO",
     "Log": "System",
-    "Description": "('21', '12', '112', '0', '182039138', '12690', '36340', '12080', '36340', '113', '1', 'false', '12')"
-  },
-  {
-    "EventID": -1610350565,
-    "SourceName": "e1dexpress",
-    "TimeGenerated": "2026-01-22 15:22:14 KSA",
-    "EventType": "WARNING",
-    "Log": "System",
-    "Description": "('', 'Intel(R) Ethernet Connection (16) I219-V')"
-  },
-  {
-    "EventID": 566,
-    "SourceName": "Microsoft-Windows-Kernel-Power",
-    "TimeGenerated": "2026-01-22 15:22:14 KSA",
-    "EventType": "INFO",
-    "Log": "System",
-    "Description": "('21', '32', '111', '2', '729865564', '13090', '36340', '12690', '36340', '112', '0', 'false', '32')"
+    "Description": "('21', '12', '122', '0', '307188588', '28290', '36500', '29800', '36500', '123', '1', 'true', '12')"
   }
 ]

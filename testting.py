@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import win32evtlog
 import json
 import time
@@ -106,7 +105,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-=======
 import win32evtlog
 import json
 import time
@@ -214,4 +212,4 @@ def main():
 
 if __name__ == "__main__":
     main()
->>>>>>> 42987c3a9faf3aa8e515f442e48010c160f49bd7
+
