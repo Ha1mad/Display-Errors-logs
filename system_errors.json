@@ -1,202 +1,82 @@
 [
-    {
-        "EventID": 1801,
-        "SourceName": "Microsoft-Windows-TPM-WMI"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": 10010,
-        "SourceName": "DCOM"
-    },
-    {
-        "EventID": -1073348572,
-        "SourceName": "volsnap"
-    },
-    {
-        "EventID": 1801,
-        "SourceName": "Microsoft-Windows-TPM-WMI"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": 10010,
-        "SourceName": "DCOM"
-    },
-    {
-        "EventID": 10005,
-        "SourceName": "DCOM"
-    },
-    {
-        "EventID": 10005,
-        "SourceName": "DCOM"
-    },
-    {
-        "EventID": 10005,
-        "SourceName": "DCOM"
-    },
-    {
-        "EventID": 10005,
-        "SourceName": "DCOM"
-    },
-    {
-        "EventID": 1801,
-        "SourceName": "Microsoft-Windows-TPM-WMI"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": 1801,
-        "SourceName": "Microsoft-Windows-TPM-WMI"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": 10010,
-        "SourceName": "DCOM"
-    },
-    {
-        "EventID": 1801,
-        "SourceName": "Microsoft-Windows-TPM-WMI"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073348572,
-        "SourceName": "volsnap"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": 10010,
-        "SourceName": "DCOM"
-    },
-    {
-        "EventID": 10010,
-        "SourceName": "DCOM"
-    },
-    {
-        "EventID": 1801,
-        "SourceName": "Microsoft-Windows-TPM-WMI"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": 1801,
-        "SourceName": "Microsoft-Windows-TPM-WMI"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": 1801,
-        "SourceName": "Microsoft-Windows-TPM-WMI"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734815,
-        "SourceName": "Service Control Manager"
-    },
-    {
-        "EventID": -1073734824,
-        "SourceName": "Service Control Manager"
-    }
+  {
+    "EventID": -1610350565,
+    "SourceName": "e1dexpress",
+    "TimeGenerated": "2026-01-22 15:35:18 KSA",
+    "EventType": "WARNING",
+    "Log": "System",
+    "Description": "('', 'Intel(R) Ethernet Connection (16) I219-V')"
+  },
+  {
+    "EventID": 566,
+    "SourceName": "Microsoft-Windows-Kernel-Power",
+    "TimeGenerated": "2026-01-22 15:35:18 KSA",
+    "EventType": "INFO",
+    "Log": "System",
+    "Description": "('21', '31', '114', '2', '586795815', '12020', '36340', '11740', '36340', '115', '0', 'false', '31')"
+  },
+  {
+    "EventID": 507,
+    "SourceName": "Microsoft-Windows-Kernel-Power",
+    "TimeGenerated": "2026-01-22 15:35:18 KSA",
+    "EventType": "INFO",
+    "Log": "System",
+    "Description": "('2034', '29512834', '5228124654', '28806304', '572094726', '601607560', '2', '80', 'false', '31', '0', '903985', 'false', '0', '693765', 'true', 'tru"
+  },
+  {
+    "EventID": 172,
+    "SourceName": "Microsoft-Windows-Kernel-Power",
+    "TimeGenerated": "2026-01-22 15:35:17 KSA",
+    "EventType": "INFO",
+    "Log": "System",
+    "Description": "('0', '0')"
+  },
+  {
+    "EventID": 172,
+    "SourceName": "Microsoft-Windows-Kernel-Power",
+    "TimeGenerated": "2026-01-22 15:25:39 KSA",
+    "EventType": "INFO",
+    "Log": "System",
+    "Description": "('2', '7')"
+  },
+  {
+    "EventID": 566,
+    "SourceName": "Microsoft-Windows-Kernel-Power",
+    "TimeGenerated": "2026-01-22 15:25:31 KSA",
+    "EventType": "INFO",
+    "Log": "System",
+    "Description": "('21', '12', '113', '1', '14810802', '12080', '36340', '12020', '36340', '114', '2', 'false', '12')"
+  },
+  {
+    "EventID": 506,
+    "SourceName": "Microsoft-Windows-Kernel-Power",
+    "TimeGenerated": "2026-01-22 15:25:16 KSA",
+    "EventType": "INFO",
+    "Log": "System",
+    "Description": "('12', 'true', 'false', '113', '12080', '36340', '113', '21')"
+  },
+  {
+    "EventID": 566,
+    "SourceName": "Microsoft-Windows-Kernel-Power",
+    "TimeGenerated": "2026-01-22 15:25:16 KSA",
+    "EventType": "INFO",
+    "Log": "System",
+    "Description": "('21', '12', '112', '0', '182039138', '12690', '36340', '12080', '36340', '113', '1', 'false', '12')"
+  },
+  {
+    "EventID": -1610350565,
+    "SourceName": "e1dexpress",
+    "TimeGenerated": "2026-01-22 15:22:14 KSA",
+    "EventType": "WARNING",
+    "Log": "System",
+    "Description": "('', 'Intel(R) Ethernet Connection (16) I219-V')"
+  },
+  {
+    "EventID": 566,
+    "SourceName": "Microsoft-Windows-Kernel-Power",
+    "TimeGenerated": "2026-01-22 15:22:14 KSA",
+    "EventType": "INFO",
+    "Log": "System",
+    "Description": "('21', '32', '111', '2', '729865564', '13090', '36340', '12690', '36340', '112', '0', 'false', '32')"
+  }
 ]
