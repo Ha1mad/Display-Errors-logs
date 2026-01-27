@@ -1,0 +1,202 @@
+[
+    {
+        "EventID": 1801,
+        "SourceName": "Microsoft-Windows-TPM-WMI"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": 10010,
+        "SourceName": "DCOM"
+    },
+    {
+        "EventID": -1073348572,
+        "SourceName": "volsnap"
+    },
+    {
+        "EventID": 1801,
+        "SourceName": "Microsoft-Windows-TPM-WMI"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": 10010,
+        "SourceName": "DCOM"
+    },
+    {
+        "EventID": 10005,
+        "SourceName": "DCOM"
+    },
+    {
+        "EventID": 10005,
+        "SourceName": "DCOM"
+    },
+    {
+        "EventID": 10005,
+        "SourceName": "DCOM"
+    },
+    {
+        "EventID": 10005,
+        "SourceName": "DCOM"
+    },
+    {
+        "EventID": 1801,
+        "SourceName": "Microsoft-Windows-TPM-WMI"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": 1801,
+        "SourceName": "Microsoft-Windows-TPM-WMI"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": 10010,
+        "SourceName": "DCOM"
+    },
+    {
+        "EventID": 1801,
+        "SourceName": "Microsoft-Windows-TPM-WMI"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073348572,
+        "SourceName": "volsnap"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": 10010,
+        "SourceName": "DCOM"
+    },
+    {
+        "EventID": 10010,
+        "SourceName": "DCOM"
+    },
+    {
+        "EventID": 1801,
+        "SourceName": "Microsoft-Windows-TPM-WMI"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": 1801,
+        "SourceName": "Microsoft-Windows-TPM-WMI"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": 1801,
+        "SourceName": "Microsoft-Windows-TPM-WMI"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734815,
+        "SourceName": "Service Control Manager"
+    },
+    {
+        "EventID": -1073734824,
+        "SourceName": "Service Control Manager"
+    }
+]

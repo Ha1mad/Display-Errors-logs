@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
 <head>
     <style>
@@ -347,3 +348,354 @@ setInterval(() => {
 </script>
 </body>
 </html>
+=======
+<html>
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #2e2e2e 0%, #485656 100%);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);  
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);  
+            border: 1px solid rgba(255, 255, 255, 0.1);   
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(171, 56, 56, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+            background: rgba(90, 203, 225, 0.2);
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: rgba(7, 6, 6, 0.05);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #00d4ff;
+        }
+
+        .live-row {
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        .time-cell {
+            color: #aaa;
+            font-size: 0.9em;
+        }
+
+        .source-clickable {
+            color: #00d4ff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .source-clickable:hover {
+            color: #ff8c00;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #2e2e2e 0%, #485656 100%);
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .modal-header h2 {
+            color: #00d4ff;
+            margin: 0;
+        }
+
+        .close-modal {
+            color: #ff3232;
+            font-size: 28px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .close-modal:hover {
+            color: #ff6666;
+        }
+
+        .modal-body {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            font-family: 'Consolas', monospace;
+            line-height: 1.5;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 212, 255, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .separator-row {
+            background: rgba(90, 203, 225, 0.1) !important;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .separator-row td {
+            padding: 10px 15px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="dashboard-header">
+            <h1>System Errors</h1>
+            <div class="live-indicator">
+                <span>Live Updates</span>
+            </div>
+        </div>
+        
+        <table id="errorTable">
+            <tr>
+                <th>Event ID</th>
+                <th>Source</th>
+                <th>Time</th>
+            </tr>
+        </table>
+    </div>
+
+    <div id="descriptionModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Error Details</h2>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalDescription">
+                
+            </div>
+        </div>
+    </div>
+
+<script>
+let lastUpdateTime = 0;
+let updateInterval;
+let timestamp = 0;
+
+const modal = document.getElementById('descriptionModal');
+const modalDescription = document.getElementById('modalDescription');
+
+function showDescription(description) {
+    modalDescription.textContent = description || 'No description available';
+    modal.style.display = 'block';
+}
+
+function closeModal() {
+    modal.style.display = 'none';
+}
+
+modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+        closeModal();
+    }
+});
+
+function updateTable() {
+    timestamp = new Date().getTime();
+    
+    fetch('system_errors.json?' + new Date().getTime())
+        .then(response => response.json())
+        .then(data => {
+            const table = document.getElementById('errorTable');
+            
+            while (table.rows.length > 1) {
+                table.deleteRow(1);
+            }
+            
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString();
+            document.querySelector('.live-indicator span').textContent = 
+                `Live - Updated: ${timeStr}`;
+            
+            if (data.length === 0) {
+                const row = table.insertRow();
+                const cell = row.insertCell(0);
+                cell.colSpan = 3;
+                cell.innerHTML = '<div style="text-align:center;padding:40px;color:#aaa">📭 No events found<br><small>Waiting for events...</small></div>';
+            } else {
+                data.forEach((item, index) => {
+                    const row = table.insertRow();
+                    row.className = 'live-row';
+                    
+                    if (lastUpdateTime > 0) {
+                        row.style.opacity = '0.8';
+                        setTimeout(() => {
+                            row.style.transition = 'opacity 0.5s ease';
+                            row.style.opacity = '1';
+                        }, 10);
+                    }
+                    
+                    const cell1 = row.insertCell(0);
+                    cell1.innerText = item.EventID || 'N/A';
+                    
+                    const cell2 = row.insertCell(1);
+                    const sourceSpan = document.createElement('span');
+                    sourceSpan.className = 'source-clickable';
+                    
+                    let sourceText = item.SourceName || 'Unknown';
+                    if (item.Log) {
+                        sourceText += ` (${item.Log})`;
+                    }
+                    sourceSpan.innerText = sourceText;
+                    
+                    sourceSpan.onclick = function() {
+                        let details = `Event ID: ${item.EventID || 'N/A'}\n`;
+                        details += `Source: ${item.SourceName || 'Unknown'}\n`;
+                        details += `Log: ${item.Log || 'N/A'}\n`;
+                        details += `Type: ${item.EventType || 'N/A'}\n`;
+                        details += `Time: ${item.TimeGenerated || 'N/A'}\n\n`;
+                        details += `Description:\n${item.Description || 'No description available'}`;
+                        showDescription(details);
+                    };
+                    cell2.appendChild(sourceSpan);
+                    
+                    const cell3 = row.insertCell(2);
+                    cell3.className = 'time-cell';
+                    cell3.innerText = item.TimeGenerated || 'N/A';
+                });
+                
+                document.querySelector('h1').innerHTML = 
+                    `System Monitor <span style="color:#aaa; font-size:0.7em; margin-left:10px;">${data.length} events</span>`;
+            }
+            
+            lastUpdateTime = timestamp;
+        })
+        .catch(error => {
+            console.error('Error loading data:', error);
+            const table = document.getElementById('errorTable');
+            const row = table.insertRow();
+            const cell = row.insertCell(0);
+            cell.colSpan = 3;
+            cell.innerHTML = '<div style="text-align:center;padding:30px;color:#ff3232">❌ Error loading data<br><small>' + error.message + '</small></div>';
+            
+            document.querySelector('.live-indicator span').textContent = 
+                'Connection Error';
+        });
+}
+
+function startLiveUpdates() {
+    if (updateInterval) {
+        clearInterval(updateInterval);
+    }
+    
+    updateTable();
+    
+    updateInterval = setInterval(updateTable, 5000);
+}
+
+document.addEventListener('DOMContentLoaded', startLiveUpdates);
+
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        if (updateInterval) {
+            clearInterval(updateInterval);
+            updateInterval = null;
+            document.querySelector('.live-indicator span').textContent = 
+                'Paused (tab hidden)';
+        }
+    } else {
+        startLiveUpdates();
+    }
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'F5' || (event.ctrlKey && event.key === 'r')) {
+        event.preventDefault();
+        updateTable();
+    }
+    if (event.key === 'Escape') {
+        closeModal();
+    }
+});
+
+setInterval(() => {
+    if (!updateInterval && !document.hidden) {
+        console.log('Reconnecting...');
+        startLiveUpdates();
+    }
+}, 10000);
+</script>
+</body>
+</html>
+>>>>>>> 42987c3a9faf3aa8e515f442e48010c160f49bd7
