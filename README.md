@@ -4,7 +4,7 @@
 
  ## Preview
 
-![Demo](Preview-Image/Preview.png)
+![Demo](Preview.Image/Preview.png)
 
 What the project does
 
