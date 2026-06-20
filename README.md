@@ -2,6 +2,10 @@
 
  Project Display Errors Logs
 
+ ## Preview
+
+![Demo](PreviewImage/Preview.png)
+
 What the project does
 
 This project is a small python script that makes it way easier to check Windows system errors. So instead of wasting your time this tool automates most of that work for you.
